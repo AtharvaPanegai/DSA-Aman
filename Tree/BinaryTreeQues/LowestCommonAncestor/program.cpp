@@ -27,21 +27,21 @@ TreeNode *LowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q)
     return !left ? right : !right ? left
                                   : root;
 
-    if (!left)
-    {
-        return right;
-    }
-    else if (!right)
-    {
-        return left;
-    }
-    else if (left)
-    {
-        if (right)
-        {
-            return root;
-        }
-    }
+    // if (!left)
+    // {
+    //     return right;
+    // }
+    // else if (!right)
+    // {
+    //     return left;
+    // }
+    // else if (left)
+    // {
+    //     if (right)
+    //     {
+    //         return root;
+    //     }
+    // }
 }
 
 int main()

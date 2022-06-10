@@ -23,7 +23,7 @@ int maxPathSum(TreeNode *root)
 
     int sumOfNodes = 0;
     sumOfNodes += root->val;
-    sumOfNodes = max(maxPathSum(root->left), maxPathSum(root->right));
+    sumOfNodes += max(maxPathSum(root->left), maxPathSum(root->right));
 
     return sumOfNodes;
 }

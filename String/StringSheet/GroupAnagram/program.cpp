@@ -11,10 +11,11 @@ vector<vector<string>> groupAnagrams(vector<string> &strs)
         mp[t].push_back(s);
     }
     vector<vector<string>> anagrams;
-    for (auto p : mp)
+    for (auto it : mp)
     {
-        anagrams.push_back(p.second);
+        anagrams.push_back(it.second);
     }
+
     return anagrams;
 }
 

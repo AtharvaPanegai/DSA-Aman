@@ -16,45 +16,28 @@ struct TreeNode
     }
 };
 
-TreeNode *inOrderSucc(TreeNode *root)
-{
-    TreeNode *curr = root;
-    while (curr && curr->left)
-    {
-        curr = curr->left;
-    }
-    return curr;
-}
-
 // Delete in BST
 TreeNode *deleteInBST(TreeNode *root, int key)
 {
-    if (key < root->val)
+    if (root)
     {
-        root->left = deleteInBST(root->left, key);
-    }
-    else if (key > root->val)
-    {
-        root->right = deleteInBST(root->right, key);
-    }
-    else if (root->val == key)
-    {
-        if (!root->left)
+        if (root->val < key)
+            root->right = deleteInBST(root->right, key);
+        else if (root->val > key)
+            root->left = deleteInBST(root->right, key);
+        else
         {
-            TreeNode *temp = root->right;
-            free(root);
-            return temp;
-        }
-        else if (!root->right)
-        {
+            if (!root->left && !root->right)
+                return NULL;
+            else if (!root->left || !root->right)
+                return root->left ? root->left : root->right;
+
             TreeNode *temp = root->left;
-            free(root);
-            return temp;
+            while (temp->right != NULL)
+                temp = temp->right;
+            root->val = temp->val;
+            root->left = deleteInBST(root->left, temp->val);
         }
-        // case 3
-        TreeNode *temp = inOrderSucc(root->right);
-        root->val = temp->val;
-        root->right = deleteInBST(root->right, temp->val);
     }
     return root;
 }

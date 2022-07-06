@@ -16,17 +16,28 @@ struct TreeNode
     }
 };
 
-int maxPathSum(TreeNode *root)
+class Solution
 {
-    if (!root)
-        return 0;
+    int ans = INT_MIN;
 
-    int sumOfNodes = 0;
-    sumOfNodes += root->val;
-    sumOfNodes += max(maxPathSum(root->left), maxPathSum(root->right));
+    int find(TreeNode *root)
+    {
+        if (!root)
+            return 0;
+        int left = max(0, find(root->left));
+        int right = max(0, find(root->right));
 
-    return sumOfNodes;
-}
+        ans = max(ans, left + right + root->val);
+
+        return max(left, right) + root->val;
+    }
+
+    int findMaxSum(TreeNode *root)
+    {
+        find(root);
+        return ans;
+    }
+};
 
 int main()
 {

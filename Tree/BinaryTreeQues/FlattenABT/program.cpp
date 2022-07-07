@@ -18,22 +18,23 @@ struct TreeNode
         right = NULL;
     }
 };
-
-void flatten(TreeNode *root)
+class Solution
 {
     TreeNode *prev;
-    if (!root)
-        return;
+    void flatten(TreeNode *root)
+    {
+        if (!root)
+            return;
 
-    flatten(root->right);
-    flatten(root->left);
+        flatten(root->right);
+        flatten(root->left);
 
-    root->right = prev;
-    root->left = NULL;
+        root->left = NULL;
+        root->right = prev;
 
-    prev = root;
-}
-
+        prev = root;
+    }
+};
 int main()
 {
 
